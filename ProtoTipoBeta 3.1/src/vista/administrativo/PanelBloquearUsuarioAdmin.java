@@ -230,7 +230,10 @@ public class PanelBloquearUsuarioAdmin extends javax.swing.JPanel {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnBloquearusuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBloquearusuarioActionPerformed
-        if(Controlador.obtenerInstancia().obtieneEstadoUsuario(txtCorreoBloquear.getText()) == 0){
+        if (txtCorreoBloquear.getText().equals(VentanaLogin.correo) || txtCorreoBloquear.getText().equals(VentanaLogin.correo.split("@")[0])){
+             JOptionPane.showMessageDialog(this, "No se puede Bloquear a si mismo", "ERROR", JOptionPane.ERROR_MESSAGE);
+             this.limpiarCampos();
+        }else if(Controlador.obtenerInstancia().obtieneEstadoUsuario(txtCorreoBloquear.getText()) == 0){
             JOptionPane.showMessageDialog(this, "El usuario ya se encuentra bloqueado", "ERROR", JOptionPane.ERROR_MESSAGE);
         }else{
         String contrasenna;

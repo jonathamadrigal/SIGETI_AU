@@ -165,7 +165,7 @@ public class Modelo {
         }
         return false;
     }//----------------------------------------------------------------------------- FIN cambiaARegistrado()
-    
+
     public boolean eliminaUsuarioAdmin(String correoUsuario) {
         //este metodo permite al administrador eliminar un usuario de la base de datos
         try {
@@ -1603,13 +1603,13 @@ public class Modelo {
     }//----------------------------------------------------------------------------- FIN consultaBitacoraHoras()
 
     public boolean agregarArea(String nuevaArea) {
-        try {            
+        try {
             Statement sentencia = null;
-            sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();            
-            if (sentencia.executeUpdate("insert into area values('" + nuevaArea+ "')") == 1) {
-                return true;              
+            sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
+            if (sentencia.executeUpdate("insert into area values('" + nuevaArea + "')") == 1) {
+                return true;
             }
-        } catch (Exception e) {            
+        } catch (Exception e) {
             //e.printStackTrace();
             return false;
         } finally {
@@ -1618,20 +1618,21 @@ public class Modelo {
         }
         return false;
     }
- /*
-    DELETE FROM `sigeti`.`area`
-WHERE <{where_expression}>;
-    */
+    /*
+     DELETE FROM `sigeti`.`area`
+     WHERE <{where_expression}>;
+     */
+
     public boolean agregarAsunto(String nuevoAsunto) {
-         try {            
+        try {
             Statement sentencia = null;
-            sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();            
-            if (sentencia.executeUpdate("insert into asuntos values('" + nuevoAsunto+ "')") == 1) {
-                return true;              
+            sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
+            if (sentencia.executeUpdate("insert into asuntos values('" + nuevoAsunto + "')") == 1) {
+                return true;
             }
-        } catch (Exception e) {            
+        } catch (Exception e) {
             //e.printStackTrace
-             System.err.println("kk");
+            System.err.println("kk");
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
@@ -1639,16 +1640,17 @@ WHERE <{where_expression}>;
         }
         return false;
     }
-public boolean eliminarAsunto(String asunto) {
-         try {            
+
+    public boolean eliminarAsunto(String asunto) {
+        try {
             Statement sentencia = null;
-            sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();            
-            if (sentencia.executeUpdate("delete from asuntos where(asunto = '" + asunto+ "')") == 1) {
-                return true;              
+            sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
+            if (sentencia.executeUpdate("delete from asuntos where(asunto = '" + asunto + "')") == 1) {
+                return true;
             }
-        } catch (Exception e) {            
+        } catch (Exception e) {
             //e.printStackTrace
-             System.err.println("kk");
+            System.err.println("kk");
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
@@ -1656,16 +1658,17 @@ public boolean eliminarAsunto(String asunto) {
         }
         return false;
     }
-public boolean eliminarArea(String area) {
-         try {            
+
+    public boolean eliminarArea(String area) {
+        try {
             Statement sentencia = null;
-            sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();            
-            if (sentencia.executeUpdate("delete from area where(nombreArea = '" + area+ "')") == 1) {
-                return true;              
+            sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();
+            if (sentencia.executeUpdate("delete from area where(nombreArea = '" + area + "')") == 1) {
+                return true;
             }
-        } catch (Exception e) {            
+        } catch (Exception e) {
             //e.printStackTrace
-             System.err.println("kk");
+            System.err.println("kk");
             return false;
         } finally {
             ConexionMySql.obtenerInstancia().desconectar();
@@ -1673,5 +1676,43 @@ public boolean eliminarArea(String area) {
         }
         return false;
     }
+    public boolean ModificarArea(String area,String nuevaArea) {
+         try {            
+            Statement sentencia = null;
+            sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();            
+            if (sentencia.executeUpdate("Update area set nombreArea = '" 
+                    + nuevaArea+ "'where nombreArea = '"+area+"'") == 1) {
+                return true;              
+            }
+        } catch (Exception e) {            
+            //e.printStackTrace             
+            return false;
+        } finally {
+            ConexionMySql.obtenerInstancia().desconectar();
+            System.out.println("Se ha cerrado la conexion");
+        }
+        return false;
+    }
+    public boolean ModificarAsunto(String asunto,String nuevoAsunto) {
+         try {            
+            Statement sentencia = null;
+            sentencia = ConexionMySql.obtenerInstancia().conectar().createStatement();            
+            if (sentencia.executeUpdate("Update asuntos set asunto = '" 
+                    + nuevoAsunto+ "'where asunto = '"+asunto+"'") == 1) {
+                return true;              
+            }
+        } catch (Exception e) {            
+            //e.printStackTrace             
+            return false;
+        } finally {
+            ConexionMySql.obtenerInstancia().desconectar();
+            System.out.println("Se ha cerrado la conexion");
+        }
+        return false;
+    }
+
+    public void obtieneAlertas() {
     
+    }
+
 }

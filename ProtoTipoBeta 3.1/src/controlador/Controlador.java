@@ -1,7 +1,5 @@
 package controlador;
 
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 import modelo.Bitacora;
 import modelo.Modelo;
@@ -281,5 +279,17 @@ public class Controlador {
     }
     public boolean eliminarArea(String area) {
         return model.eliminarArea(area);
+    }
+
+    public boolean modificarAsunto(String area, String areaNueva) {
+        return model.ModificarAsunto(area, areaNueva);
+    }
+    public boolean modificarArea(String area, String areaNueva) {
+        return model.ModificarArea(area, areaNueva);
+    }
+
+    public String nuevaAlerta() { 
+        model.obtieneAlertas();
+        return null;
     }
 }

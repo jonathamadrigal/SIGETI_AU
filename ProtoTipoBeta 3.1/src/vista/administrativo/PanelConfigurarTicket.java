@@ -1,8 +1,6 @@
 package vista.administrativo;
 
 import controlador.Controlador;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.awt.event.KeyAdapter;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -489,7 +487,27 @@ public class PanelConfigurarTicket extends javax.swing.JPanel {
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnModificarAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarAreaActionPerformed
-        // TODO add your handling code here:
+        if (jComboBoxModificarArea.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(this, "Seleccione el Area a Modificar", "ERROR", JOptionPane.ERROR_MESSAGE);
+        } else if ("".equals(txtAreaModificar.getText())) {
+            JOptionPane.showMessageDialog(this, "Indique la nueva Area", "ERROR", JOptionPane.ERROR_MESSAGE);
+        } else {
+            String contrasenna;
+            if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "¿Realmente "
+                    + "desea Modificar el Area?", null, JOptionPane.YES_NO_OPTION)) {
+                contrasenna = JOptionPane.showInputDialog("Digite su contraseña:");
+                if (Controlador.obtenerInstancia().verificarContrasenna(VentanaLogin.correo, contrasenna)) {
+                    if (Controlador.obtenerInstancia().modificarArea(jComboBoxModificarArea.getSelectedItem().toString(), txtAreaModificar.getText())) {
+                        JOptionPane.showMessageDialog(this, "   Area Modificada con éxito", "Area Modificada", JOptionPane.INFORMATION_MESSAGE);
+                        limpiarCampos();
+                    } else {
+                        JOptionPane.showMessageDialog(this, "No se pudo Modificar el Area", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "   No se pudo Modificar el Area, constraseña incorrecta", "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }
     }//GEN-LAST:event_btnModificarAreaActionPerformed
 
     private void btnEliminarAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarAreaActionPerformed
@@ -501,7 +519,7 @@ public class PanelConfigurarTicket extends javax.swing.JPanel {
                     + "desea Eliminar el Area?", null, JOptionPane.YES_NO_OPTION)) {
                 contrasenna = JOptionPane.showInputDialog("Digite su contraseña:");
                 if (Controlador.obtenerInstancia().verificarContrasenna(VentanaLogin.correo, contrasenna)) {
-                    if (Controlador.obtenerInstancia().eliminarArea(jComboBoxEliminarArea.getSelectedItem().toString() )) {
+                    if (Controlador.obtenerInstancia().eliminarArea(jComboBoxEliminarArea.getSelectedItem().toString())) {
                         JOptionPane.showMessageDialog(this, "   Area Eliminada con éxito", "Area Eliminada", JOptionPane.INFORMATION_MESSAGE);
                         limpiarCampos();
                     } else {
@@ -552,7 +570,7 @@ public class PanelConfigurarTicket extends javax.swing.JPanel {
                     + "desea Eliminar el Asunto?", null, JOptionPane.YES_NO_OPTION)) {
                 contrasenna = JOptionPane.showInputDialog("Digite su contraseña:");
                 if (Controlador.obtenerInstancia().verificarContrasenna(VentanaLogin.correo, contrasenna)) {
-                    if (Controlador.obtenerInstancia().eliminarAsunto(jComboBoxEliminarAsunto.getSelectedItem().toString() )) {
+                    if (Controlador.obtenerInstancia().eliminarAsunto(jComboBoxEliminarAsunto.getSelectedItem().toString())) {
                         JOptionPane.showMessageDialog(this, "   Asunto Eliminado con éxito", "Asunto Eliminado", JOptionPane.INFORMATION_MESSAGE);
                         limpiarCampos();
                     } else {
@@ -566,7 +584,27 @@ public class PanelConfigurarTicket extends javax.swing.JPanel {
     }//GEN-LAST:event_btnEliminarAsuntoActionPerformed
 
     private void btnModificarAsuntoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarAsuntoActionPerformed
-        // TODO add your handling code here:
+        if (jComboBoxModificarAsunto.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(this, "Seleccione el Asunto a Modificar", "ERROR", JOptionPane.ERROR_MESSAGE);
+        } else if ("".equals(txtModificarAsunto.getText())) {
+            JOptionPane.showMessageDialog(this, "Indique el nuevo Asunto", "ERROR", JOptionPane.ERROR_MESSAGE);
+        } else {
+            String contrasenna;
+            if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(this, "¿Realmente "
+                    + "desea Modificar el Asunto?", null, JOptionPane.YES_NO_OPTION)) {
+                contrasenna = JOptionPane.showInputDialog("Digite su contraseña:");
+                if (Controlador.obtenerInstancia().verificarContrasenna(VentanaLogin.correo, contrasenna)) {
+                    if (Controlador.obtenerInstancia().modificarAsunto(jComboBoxModificarAsunto.getSelectedItem().toString(), txtModificarAsunto.getText())) {
+                        JOptionPane.showMessageDialog(this, "   Asunto Modificado con éxito", "Area Modificada", JOptionPane.INFORMATION_MESSAGE);
+                        limpiarCampos();
+                    } else {
+                        JOptionPane.showMessageDialog(this, "No se pudo Modificar el Asunto", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "   No se pudo Modificar el Asunto, constraseña incorrecta", "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }
     }//GEN-LAST:event_btnModificarAsuntoActionPerformed
 
     private void limpiarCampos() {
@@ -574,7 +612,7 @@ public class PanelConfigurarTicket extends javax.swing.JPanel {
         txtAgreagrAsunto.setText("");
         txtAreaModificar.setText("");
         txtModificarAsunto.setText("");
-         this.cargarjComboArea();
+        this.cargarjComboArea();
         this.cargarjComboAsunto();
         this.jComboBoxEliminarArea.setSelectedIndex(0);
         this.jComboBoxEliminarAsunto.setSelectedIndex(0);

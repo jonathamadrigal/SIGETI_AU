@@ -79,28 +79,3 @@ public class Alertas {
     private final int sizeX = Toolkit.getDefaultToolkit().getScreenSize().width - 300;
 }
 
-/*
-
- final JPanel panel = new JPanel();
- panel.setBackground(Color.red);
-        
- //JOptionPane warning = new JOptionPane();
- //Ventana.obtenerInstancia().add(warning);
- //warning.setBounds(200, 200, 100, 15);  
- //warning.setVisible(true);
- //warning.setLocation(100, 100);
- //warning.showMessageDialog(Ventana.obtenerInstancia(), mensaje, "Warning",
- //        JOptionPane.WARNING_MESSAGE);
-
- JOptionPane mi_jop = new JOptionPane();
- // añadirlo a la lista de componentes de la página 
- //this.add(mi_jop);
- //objecto swing.setBounds(posicion x, posicion y, longitud, anchura) 
- //mi_jop.setBounds(150, 150, 200, 13);
- //mi_jop.setLocation(400, 4000);
- //mi_jop.setLocale(Locale.UK);
- mi_jop.showMessageDialog(panel, mensaje, "Warning",
- JOptionPane.WARNING_MESSAGE);
- JOptionPane.PROPERTIES;
-
- */

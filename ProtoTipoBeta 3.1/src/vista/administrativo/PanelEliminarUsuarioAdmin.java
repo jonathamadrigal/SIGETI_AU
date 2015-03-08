@@ -5,6 +5,7 @@ import java.awt.event.KeyAdapter;
 import javax.swing.JOptionPane;
 import vista.Ventana;
 import vista.VentanaLogin;
+import vista.VentanaRegistro;
 
 public class PanelEliminarUsuarioAdmin extends javax.swing.JPanel {
 
@@ -205,7 +206,10 @@ public class PanelEliminarUsuarioAdmin extends javax.swing.JPanel {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnEliminarusuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarusuarioActionPerformed
-        if(Controlador.obtenerInstancia().obtieneEstadoUsuario(txtCorreoEliminar.getText()) == 2){
+        if (txtCorreoEliminar.getText().equals(VentanaLogin.correo) || txtCorreoEliminar.getText().equals(VentanaLogin.correo.split("@")[0])){
+             JOptionPane.showMessageDialog(this, "No se puede Eliminar a si mismo", "ERROR", JOptionPane.ERROR_MESSAGE);
+             this.limpiarCampos();
+        }else if(Controlador.obtenerInstancia().obtieneEstadoUsuario(txtCorreoEliminar.getText()) == 2){
             JOptionPane.showMessageDialog(this, "El usuario ya se encuentra eliminado", "ERROR", JOptionPane.ERROR_MESSAGE);
         }else{
         String contrasenna;

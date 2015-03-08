@@ -48,6 +48,7 @@ import vista.administrativo.PanelConsultaUnoAdmin;
 import vista.administrativo.PanelCrearTicketAdministrativo;
 import vista.administrativo.PanelDesbloquearUsuarioAdmin;
 import vista.administrativo.PanelConfigurarTicket;
+import vista.administrativo.PanelEliminarUsuarioAdmin;
 import vista.administrativo.PanelGestionarTicketAdmin;
 import vista.administrativo.PanelModificarUsuario;
 import vista.administrativo.PanelRegistrarUsuariosAdmin;
@@ -871,7 +872,7 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
     public void eliminarUsuarioAdmin() {
         panelPrincipal.removeAll();
         setBarraEstado("Eliminar usuarios");
-        scrollPanelPrincipal = new JScrollPane(PanelConfigurarTicket.obtenerInstancia());
+        scrollPanelPrincipal = new JScrollPane(PanelEliminarUsuarioAdmin.obtenerInstancia());
         panelPrincipal.setLayout(new BorderLayout());
         panelPrincipal.add(ArbolAdministrativo.obtenerInstancia(), BorderLayout.WEST);
         panelPrincipal.add(scrollPanelPrincipal, BorderLayout.CENTER);
@@ -1107,6 +1108,7 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
         try {
             while (true) {
                 this.validaTimer();
+                this.validarAlertas();
             }
         } catch (Exception e) {
         }
@@ -1124,7 +1126,14 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
             revalidate();//xq ???
         }
     }//----------------------------------------------------------------------------- FIN validaTimer()
-
+    
+    private void validarAlertas() {
+        String mensaje = Controlador.obtenerInstancia().nuevaAlerta();
+        if(mensaje != null){
+            Alertas.obtenerInstancia().WarningAlert(mensaje);
+        }
+    }
+    
     @Override
     public void mouseClicked(MouseEvent e) {
         time_start = System.currentTimeMillis();
@@ -1188,5 +1197,7 @@ public class Ventana extends JFrame implements Runnable, MouseListener {//la ven
     private long time_start;
     //--o--
     private Alertas alerta;
+
+    
 
 }//____________________________________________________________________END_CLASS
