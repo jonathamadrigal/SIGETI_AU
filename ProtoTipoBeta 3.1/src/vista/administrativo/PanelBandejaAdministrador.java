@@ -1145,7 +1145,7 @@ public class PanelBandejaAdministrador extends javax.swing.JPanel {
         txtPrioridad.setText("");
         txtResponsable.setText("");
         txtTiempoSol.setText("");
-
+//comentario desde git
     }
 
     //Declaracion de variables
